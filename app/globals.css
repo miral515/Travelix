@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap");
+
+@import "tailwindcss";
+
+/* ---------------------------------------------
+   Travelix design tokens
+--------------------------------------------- */
+:root {
+  --tvx-bg: #f2ecda;
+  --tvx-card: #fbf5e8;
+  --tvx-border: #d8cba0;
+  --tvx-navy: #16283a;
+  --tvx-orange: #d9552e;
+  --tvx-orange-dark: #c24a26;
+  --tvx-green: #1f6f6b;
+  --tvx-muted: #8a7f63;
+  --tvx-muted-light: #b7ac8b;
+  --tvx-ink-soft: #5c5642;
+
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+/* ---------------------------------------------
+   Base / typography
+--------------------------------------------- */
+.tvx-page {
+  background-color: var(--tvx-bg);
+}
+
+.tvx-serif {
+  font-family: var(--font-serif);
+  color: var(--tvx-navy);
+}
+
+.tvx-sans {
+  font-family: var(--font-sans);
+}
+
+.tvx-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.tvx-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  font-size: 0.6875rem;
+  color: var(--tvx-muted);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------
+   Card
+--------------------------------------------- */
+.tvx-card {
+  background-color: var(--tvx-card);
+  border: 1px solid var(--tvx-border);
+  border-radius: 2rem;
+  box-shadow:
+    0 2px 4px rgba(22, 40, 58, 0.03),
+    0 12px 24px rgba(22, 40, 58, 0.06),
+    0 40px 80px -20px rgba(22, 40, 58, 0.16);
+}
+
+/* ---------------------------------------------
+   Form fields
+--------------------------------------------- */
+.tvx-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.tvx-input {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--tvx-navy);
+  background-color: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--tvx-border);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tvx-input::placeholder {
+  color: var(--tvx-muted-light);
+}
+
+.tvx-input:focus {
+  border-color: var(--tvx-orange);
+  box-shadow: 0 0 0 4px rgba(217, 85, 46, 0.12);
+}
+
+/* Chrome/Safari date/number spinner cleanup */
+.tvx-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(14%) sepia(24%) saturate(1200%) hue-rotate(165deg);
+  opacity: 0.6;
+}
+
+/* ---------------------------------------------
+   Interest chips
+--------------------------------------------- */
+.tvx-chip {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  padding: 0.625rem 1.125rem;
+  border-radius: 999px;
+  border: 1px solid var(--tvx-border);
+  background-color: transparent;
+  color: var(--tvx-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.tvx-chip:hover {
+  border-color: var(--tvx-navy);
+  transform: translateY(-1px);
+}
+
+.tvx-chip-active {
+  background-color: var(--tvx-navy);
+  border-color: var(--tvx-navy);
+  color: var(--tvx-card);
+}
+
+.tvx-chip-active:hover {
+  transform: none;
+}
+
+/* ---------------------------------------------
+   CTA button
+--------------------------------------------- */
+.tvx-cta {
+  background-color: var(--tvx-orange);
+  color: var(--tvx-card);
+  font-family: var(--font-sans);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -8px rgba(217, 85, 46, 0.5);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.tvx-cta:hover:not(:disabled) {
+  background-color: var(--tvx-orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -8px rgba(217, 85, 46, 0.55);
+}
+
+.tvx-cta:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.tvx-cta:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.tvx-cta:hover:not(:disabled) .tvx-plane {
+  transform: translateX(6px);
+}
+
+.tvx-plane {
+  transition: transform 0.2s ease;
+}
+
+/* ---------------------------------------------
+   Decorative travel elements
+--------------------------------------------- */
+.tvx-stamp {
+  border: 1.5px dashed var(--tvx-green);
+  color: var(--tvx-green);
+}
+
+.tvx-flightpath path {
+  stroke: var(--tvx-navy);
+}
+
+.tvx-divider {
+  border-top: 1px dashed var(--tvx-border);
+}
+
+/* ---------------------------------------------
+   Loading page animations
+--------------------------------------------- */
+.tvx-plane-fly {
+  animation: tvx-fly 1.8s ease-in-out infinite;
+}
+
+@keyframes tvx-fly {
+  0% {
+    left: 0%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  50% {
+    transform: translate(-50%, -65%) rotate(90deg);
+  }
+  100% {
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+.tvx-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--tvx-orange);
+  animation: tvx-dot-bounce 1s ease-in-out infinite;
+}
+
+@keyframes tvx-dot-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------
+   Loading spinner
+--------------------------------------------- */
+.tvx-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(251, 245, 232, 0.4);
+  border-top-color: var(--tvx-card);
+  animation: tvx-spin 0.7s linear infinite;
+}
+
+@keyframes tvx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
